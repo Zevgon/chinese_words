@@ -18,14 +18,17 @@ export default class App extends React.Component {
     this.keysPressed = new Set;
   }
 
-  handleKeyCombo() {
+  handleKeyCombo(e) {
     if (this.keysPressed.has(18) && this.keysPressed.has(50)) {
+      e.preventDefault();
       document.getElementsByClassName('increment')[0].click();
     }
     if (this.keysPressed.has(18) && this.keysPressed.has(49)) {
+      e.preventDefault();
       document.getElementsByClassName('decrement')[0].click();
     }
     if (this.keysPressed.has(18) && this.keysPressed.has(51)) {
+      e.preventDefault();
       document.getElementsByClassName('flip')[0].click();
     }
   }
@@ -34,7 +37,7 @@ export default class App extends React.Component {
     const that = this;
     document.addEventListener('keydown', e => {
       that.keysPressed.add(e.which);
-      that.handleKeyCombo.bind(that)();
+      that.handleKeyCombo.bind(that)(e);
     });
     document.addEventListener('keyup', e => {
       that.keysPressed.delete(e.which);
