@@ -58,6 +58,7 @@ export default class App extends React.Component {
     e.preventDefault();
     const card = document.querySelector('div[data-is-current="true"');
     const answer = card.querySelector('div.back > .card-text').innerText;
+    answer = answer.replace(/[\(\)]/g, '');
     const curInput = document.getElementById('input').value;
     const pattern = new RegExp(curInput + '\\b', 'i');
     if (answer.match(pattern)) {
