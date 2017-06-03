@@ -19,13 +19,16 @@ export default class App extends React.Component {
   }
 
   handleKeyCombo(e) {
-    if (this.keysPressed.has(18) && this.keysPressed.has(50)) {
-      e.preventDefault();
-      document.getElementsByClassName('increment')[0].click();
-    }
     if (this.keysPressed.has(18) && this.keysPressed.has(49)) {
       e.preventDefault();
       document.getElementsByClassName('decrement')[0].click();
+    }
+    if (this.keysPressed.has(18) && this.keysPressed.has(50)) {
+      e.preventDefault();
+      this.setState({
+        value: '',
+      });
+      document.getElementsByClassName('increment')[0].click();
     }
     if (this.keysPressed.has(18) && this.keysPressed.has(51)) {
       e.preventDefault();
