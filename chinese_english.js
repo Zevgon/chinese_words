@@ -72,7 +72,7 @@ export const cards = [
 'gān / gàn', 'have to do with / dry, work',
 'yú', 'at, on, in, to, than',
 'qiān', 'thousand',
-'nǚ － female, woman', 'thousand',
+'nǚ', 'female, woman',
 'hǎo / hào', 'good, very / like, be fond of',
 'rú', 'as (if), like, such as',
 'ān', 'safe, secure, install',

@@ -15,6 +15,30 @@ export default class App extends React.Component {
     this.state = {
       value: '',
     };
+    this.keysPressed = new Set;
+  }
+
+  handleKeyCombo() {
+    if (this.keysPressed.has(18) && this.keysPressed.has(50)) {
+      document.getElementsByClassName('increment')[0].click();
+    }
+    if (this.keysPressed.has(18) && this.keysPressed.has(49)) {
+      document.getElementsByClassName('decrement')[0].click();
+    }
+    if (this.keysPressed.has(18) && this.keysPressed.has(51)) {
+      document.getElementsByClassName('flip')[0].click();
+    }
+  }
+
+  componentDidMount() {
+    const that = this;
+    document.addEventListener('keydown', e => {
+      that.keysPressed.add(e.which);
+      that.handleKeyCombo.bind(that)();
+    });
+    document.addEventListener('keyup', e => {
+      that.keysPressed.delete(e.which);
+    });
   }
 
   handleChange(e) {
