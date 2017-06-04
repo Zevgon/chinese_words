@@ -2,10 +2,21 @@ import React from 'react';
 import { cards } from './chinese_english';
 import FlashcardApp from 'react-flashcard-app';
 
+let englishChinese = [];
+for (let i = 0; i < cards.length - 1; i++) {
+  englishChinese.push(cards[i + 1]);
+  englishChinese.push(cards[i]);
+  i += 1;
+}
+
+window.cards = cards;
+window.ec = englishChinese;
+
+
 const data = {
   id: 1,
-  name: 'Chinese-English',
-  cards,
+  name: 'English-Chinese',
+  cards: englishChinese,
 };
 
 
@@ -57,11 +68,11 @@ export default class App extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const card = document.querySelector('div[data-is-current="true"');
-    const answer = card.querySelector('div.back > .card-text').innerText;
+    let answer = card.querySelector('div.back > .card-text').innerText;
     answer = answer.replace(/[\(\)]/g, '');
     const curInput = document.getElementById('input').value;
     const pattern = new RegExp(curInput + '\\b', 'i');
-    if (answer.match(pattern)) {
+    if ((answer === curInput) || (answer.match(pattern) && curInput !== '')) {
       document.getElementsByClassName('remove')[0].click();
       this.setState({
         value: '',
